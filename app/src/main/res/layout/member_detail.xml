@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:text="Member Detail"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#603e3e"
+        android:fontFamily="boald"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <Button
+        android:text="수 정"
+        android:id="@+id/updateBtn"
+        android:layout_margin="10dp"
+        android:layout_width="100dp"
+        android:background="#593648"
+        android:textColor="#f7f7f7"
+        android:layout_height="30dp" />
+    <Button
+        android:id="@+id/cancelUpdat"
+        android:text="취 소"
+        android:layout_margin="10dp"
+        android:layout_width="100dp"
+        android:background="#593648"
+        android:textColor="#f7f7f7"
+        android:layout_height="30dp" />
+   </LinearLayout>
+
+</LinearLayout>
