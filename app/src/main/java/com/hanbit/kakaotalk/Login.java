@@ -16,38 +16,34 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        final Context context= Login.this;
+        final Context context = Login.this;
         final EditText inputId = (EditText) findViewById(R.id.inputId);
-        final EditText inputPass= (EditText) findViewById(R.id.inputPass);
-        final MemberLogin login=new MemberLogin(context);
+        final EditText inputPass = (EditText) findViewById(R.id.inputPass);
+        final MemberLogin login = new MemberLogin(context);
         findViewById(R.id.loginBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final  String id= String.valueOf(inputId.getText().toString());
-                final String pass=String.valueOf(inputPass.getText().toString());
-                Toast.makeText(context, "아이디: "+id+" 비밀번호: "+pass, Toast.LENGTH_SHORT).show();
-                Log.d("입력된 ID: ",id);
-                Log.d("입력된 PW: ",pass);
+                final String id = String.valueOf(inputId.getText());
+                final String pass= String.valueOf(inputPass.getText());
 
+                Toast.makeText(context,"입력된 ID: "+id, Toast.LENGTH_LONG).show();
+                Log.d("입력된 Id:",id);
+                Log.d("입력된 Pass:",pass);
                 new Service.IPredicate() {
                     @Override
                     public void execute() {
-                       if(login.execute(id,pass)){
-                           Toast.makeText(context, "로그인으로 가기, 아이디:"+id, Toast.LENGTH_SHORT).show();
-                           startActivity(new Intent(context,MemberList.class));
-                       }else{
-                           Toast.makeText(context, "로그인 실패 아이디: "+id+" 비밀번호: "+pass, Toast.LENGTH_SHORT).show();
-                           startActivity(new Intent(context,Main.class));
-                       }
+                        if(login.execute(id,pass)){
+                            startActivity(new Intent(context,MemberList.class));
+                        }else{
+                            startActivity(new Intent(context,Login.class));
+                        };
                     }
                 }.execute();
-                //startActivity(new Intent(context,MemberList.class));
             }
         });
         findViewById(R.id.cancelBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "취소", Toast.LENGTH_SHORT).show();
                 inputId.setText("");
                 inputPass.setText("");
             }
@@ -57,8 +53,7 @@ public class Login extends AppCompatActivity {
         SQLiteOpenHelper helper;
         public LoginQuery(Context context) {
             super(context);
-            //SqLiteHelper내가 만든것,inner class
-            helper= new Index.SqLiteHelper(context);
+            helper = new Index.SqLiteHelper(context);
         }
         @Override
         public SQLiteDatabase getDatabase() {
@@ -66,15 +61,13 @@ public class Login extends AppCompatActivity {
         }
     }
     private class MemberLogin extends LoginQuery{
-        //추상을 또 만들면 안됨 ,FINAL이다
+
         public MemberLogin(Context context) {
             super(context);
         }
-        public boolean execute(String id,String pass){
-            return super
-                    .getDatabase()
-                    .rawQuery(String.format(" SELECT * FROM %s WHERE %s='%s' AND %s ='%s' ;" ,Cons.MEMBER_TBL,Cons.SEQ,id,Cons.PASS,pass),null)
-                    .moveToNext();
+        public boolean execute(String id, String pass){
+            return super.getDatabase().rawQuery(String.format(" SELECT * FROM %s WHERE %s LIKE '%s' AND %s LIKE '%s'",Cons.MEMBER_TBL,Cons.SEQ,id,Cons.PASS,pass),null).moveToNext();
         }
     }
 }
+

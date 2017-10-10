@@ -5,40 +5,7 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:hint="친구 검색"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/addMem"
-            android:text="친구 추가"
-            android:layout_margin="5dp"
-            android:background="#593648"
-            android:textColor="#f7f7f7"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
-        <Button
-            android:id="@+id/detailBtn"
-            android:text="친구 상세"
-            android:layout_margin="5dp"
-            android:background="#593648"
-            android:textColor="#f7f7f7"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
-        <Button
-            android:id="@+id/logoutBtn"
-            android:text="LOGOUT"
-            android:layout_margin="5dp"
-            android:background="#593648"
-            android:textColor="#f7f7f7"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
-    </LinearLayout>
+
 
     <ListView
         android:id="@+id/listView"
